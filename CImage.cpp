@@ -69,16 +69,20 @@ void CImage::WuLine(CLine line) {
 }
 
 bool CImage::inRec(int x, int y, CLine AB, CLine BC, CLine CD, CLine DA) {
-    if (y <= AB.start_.y_ + x*(AB.end_.y_ - AB.start_.y_)/(AB.end_.x_ - AB.start_.x_) - AB.start_.x_*(AB.end_.y_ - AB.start_.y_)/(AB.end_.x_ - AB.start_.x_)){
+    if (y <= AB.start_.y_ + x * (AB.end_.y_ - AB.start_.y_) / (AB.end_.x_ - AB.start_.x_) -
+             AB.start_.x_ * (AB.end_.y_ - AB.start_.y_) / (AB.end_.x_ - AB.start_.x_)) {
         return false;
     }
-    if (y >= BC.start_.y_ + x*(BC.end_.y_ - BC.start_.y_)/(BC.end_.x_ - BC.start_.x_) - BC.start_.x_*(BC.end_.y_ - BC.start_.y_)/(BC.end_.x_ - BC.start_.x_)){
+    if (y >= BC.start_.y_ + x * (BC.end_.y_ - BC.start_.y_) / (BC.end_.x_ - BC.start_.x_) -
+             BC.start_.x_ * (BC.end_.y_ - BC.start_.y_) / (BC.end_.x_ - BC.start_.x_)) {
         return false;
     }
-    if (y >= CD.start_.y_ + x*(CD.end_.y_ - CD.start_.y_)/(CD.end_.x_ - CD.start_.x_) - CD.start_.x_*(CD.end_.y_ - CD.start_.y_)/(CD.end_.x_ - CD.start_.x_)){
+    if (y >= CD.start_.y_ + x * (CD.end_.y_ - CD.start_.y_) / (CD.end_.x_ - CD.start_.x_) -
+             CD.start_.x_ * (CD.end_.y_ - CD.start_.y_) / (CD.end_.x_ - CD.start_.x_)) {
         return false;
     }
-    if (y <= DA.start_.y_ + x*(DA.end_.y_ - DA.start_.y_)/(DA.end_.x_ - DA.start_.x_) - DA.start_.x_*(DA.end_.y_ - DA.start_.y_)/(DA.end_.x_ - DA.start_.x_)){
+    if (y <= DA.start_.y_ + x * (DA.end_.y_ - DA.start_.y_) / (DA.end_.x_ - DA.start_.x_) -
+             DA.start_.x_ * (DA.end_.y_ - DA.start_.y_) / (DA.end_.x_ - DA.start_.x_)) {
         return false;
     }
     return true;
@@ -94,10 +98,11 @@ void CImage::drawLine(CLine line, SInput input) {
     if (line.thickness < 0) {
         throw CExpension("Thickness is < 0", file);
     }
-    if (line.thickness == 1) {
+    if (line.thickness == 1.0) {
         WuLine(line);
     } else {
-        double a = line.end_.x_ - line.start_.x_ == 0 ? M_PI / 2 :M_PI / 2 - abs(atan((line.end_.y_ - line.start_.y_) / (line.end_.x_ - line.start_.x_)));
+        double a = line.end_.x_ - line.start_.x_ == 0 ? M_PI / 2 : M_PI / 2 - abs(atan(
+                (line.end_.y_ - line.start_.y_) / (line.end_.x_ - line.start_.x_)));
         double l = line.thickness / 2.0;
         SPoint A;
         SPoint B;
