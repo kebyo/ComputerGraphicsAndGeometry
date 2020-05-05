@@ -12,15 +12,16 @@ struct IPoint {
 
 class CImage {
 public:
-    CImage(FILE *f, CLine line);
+    CImage(FILE *f);
 
-    ~CImage();;
+    ~CImage();
+
 
     friend void getAnsw(const char *fileName, CImage &output);
 
-    void WuLine(CLine line_);
+    void WuLine(CLine line);
 
-    void drawLine(CLine line);
+    void drawLine(CLine line, SInput input);
 
 private:
     FILE *file;
@@ -31,15 +32,11 @@ private:
     int size;
     unsigned char *pix;
 
-    void point(IPoint p, CLine line);
+    bool inRec(int x, int y, CLine AB, CLine BC, CLine CD, CLine DA);
 
-    void putPoint(bool sw, SPoint p, CLine line);
-
-    void point(IPoint p, double brightness, CLine line);
+    void point(bool sw, IPoint p, double brightness, CLine line);
 
     double Decorrection(double value, CLine line);
-
-    void WuPoint(bool sw, SPoint p, double brigthness, CLine line);
 
     double gammaCorrection(double value, CLine line);
 };
