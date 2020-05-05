@@ -59,21 +59,8 @@ int main(int argc, char *argv[]) {
             }
         }
         CLine line(input);
-        CImage image(f, line);
-        double alpha = atan((line.end_.y_ - line.start_.y_) / (line.end_.x_ - line.start_.x_));
-        if (line.thickness == 1) {
-            image.drawLine(line);
-        } else {
-            SPoint A;
-            SPoint B;
-            SPoint C;
-            SPoint D;
-            if ((line.end_.y_ - line.start_.y_) / (line.end_.x_ - line.start_.x_) > 0){
-
-            } else {
-
-            }
-        }
+        CImage image(f);
+        image.drawLine(line, input);
         getAnsw(input.outputName, image);
         return 0;
     } catch (CExpension &expension) {
