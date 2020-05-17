@@ -90,7 +90,10 @@ bool CImage::inRec(int x, int y, CLine AB, CLine BC, CLine CD, CLine DA) {
 
 void CImage::point(bool sw, IPoint p, double brightness, CLine line) {
     double b = round(gammaCorrection(pix[p.x * width + p.y], line) * (1.0 - brightness) + line.brightness * brightness);
-    pix[p.x * width + p.y] = (int) round(
+    if (sw) {
+        swap(p.x, p.y);
+    }
+    pix[p.y * width + p.x] = (int) round(
             Decorrection(line.brightness / 255.0 * b, line));
 }
 
